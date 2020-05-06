@@ -36,13 +36,13 @@
           name: nginx
           description: an nginx EC2 group
           region: us-east-2
-          aws_secret_key: "Secret"
-          aws_access_key: "Secret"
-        rules:
-            proto: tcp
-            from_port: 80
-            to_port: 80
-            cidr_ip: 192.168.0.0/24
+          aws_secret_key: "AKIAVHB2CNOVRJXMU3DZ"
+          aws_access_key: "7g+pw5hu/LxBmsujKSI3soApaS3VN1Pv8aP/p5i8"
+      rules:
+           proto: tcp
+           from_port: 80
+           to_port: 80
+           cidr_ip: 192.168.0.0/24
           - proto: tcp
             from_port: 22
             to_port: 22
