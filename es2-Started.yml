@@ -33,3 +33,9 @@
     - name: Test hosts list
       debug:
         msg: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+  
+- hosts: web
+  name: Install Nginx Web Server on Debian Family
+  apt:
+    name=nginx
+    state=latest  
