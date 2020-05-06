@@ -17,7 +17,7 @@
               volume_type: gp2
               volume_size: 8
          monitoring: yes
-         group: web
+         group: EC2SecurityGroup
       register: ec2
 
     - name: Wait for SSH to come up
