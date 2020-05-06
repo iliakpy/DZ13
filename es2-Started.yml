@@ -36,8 +36,8 @@
           name: nginx
           description: an nginx EC2 group
           region: us-east-2
-          aws_secret_key: "AKIAVHB2CNOVRJXMU3DZ"
-          aws_access_key: "7g+pw5hu/LxBmsujKSI3soApaS3VN1Pv8aP/p5i8"
+          aws_secret_key: ""
+          aws_access_key: ""
       rules:
            proto: tcp
            from_port: 80
