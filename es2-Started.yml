@@ -32,3 +32,6 @@
 - hosts: localhost
   tasks:
     - debug: var=hostvars[inventory_hostname]['ansible_default_ipv4']['address']
+  
+    - add_host: hostname={{ item.public_ip }} groupname=ec2hosts
+        with_items: ec2_info.instances
