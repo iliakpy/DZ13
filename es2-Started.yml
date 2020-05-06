@@ -4,7 +4,6 @@
     - name: Provision EC2 instance
       ec2:
          key_name: my-key1
-         group: web
          region: us-east-2
          instance_type: t2.micro
          image: ami-07c1207a9d40bc3bd
@@ -18,7 +17,7 @@
               volume_type: gp2
               volume_size: 8
          monitoring: yes
-         group: EC2SecurityGroup
+         group: web
       register: ec2
 
     - name: Wait for SSH to come up
@@ -28,15 +27,16 @@
           delay: 60
           timeout: 320
           state: started
-      with_items: "{{ ec2.instances }}"
+      with_items: "{{ ec2.instances }}"аа
 
-    - name: Test hosts list
-      debug:
-        msg: "{{ hostvars[inventory_hostname]['ansible_public_ipv4']['address'] }}"
-  
+    - name: host
+        debug: msg="{{ hostvars[item]['ansible_host'] }}" 
+        with_items:
+          - "{{ groups['SYNC-HOSTS'] }}"
+
 - hosts: web
   tasks:
-    - name: Install Nginx Web Server on Debian Family
+    - name: Install Nginx Web Server
       apt:
         name=nginx
         fiestate=latest  
