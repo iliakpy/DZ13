@@ -28,7 +28,7 @@
           timeout: 320
           state: started
       with_items: "{{ ec2.instances }}"
-   - name: Test hosts list
+    - name: Test hosts list
       debug:
-       msg: "{{ lookup('dig', ansible_host) }}"
+        msg: "{{ lookup('dig', ansible_host) }}"
 
