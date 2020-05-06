@@ -29,6 +29,6 @@
           state: started
       with_items: "{{ ec2.instances }}"
 
-- hosts: localhost
-     tasks:
-       - debug: var=hostvars[inventory_hostname]['ansible_default_ipv4']['address']
+  
+  tasks:
+    - debug: var=hostvars[inventory_hostname]['ansible_default_ipv4']['address']
