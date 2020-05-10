@@ -33,10 +33,10 @@
       debug:
       msg: "Allocated IP is {{ eip.public_ip }}"
      
-     - name: Add host to multiple groups
-       add_host:
-         hostname: '{{ eip.public_ip }}'
-         groups: es2
+    - name: Add host to multiple groups
+      add_host:
+          hostname: '{{ eip.public_ip }}'
+          groups: es2
 
 - name: install Apache and upload mt Web Page
   hosts: web
