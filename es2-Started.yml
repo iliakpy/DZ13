@@ -39,7 +39,7 @@
           groups: es2
 
 - name: install Apache and upload mt Web Page
-  hosts: web
+  hosts: ec21111
   become: yes
 
   vars:
