@@ -29,19 +29,35 @@
           state: started
       with_items: "{{ ec2.instances }}"
  
-    - debug: var=ec2
-    - debug: var=item
-      with_items: "{{ ec2.instances }}"
+    - name: output the IP
+      debug:
+      msg: "Allocated IP is {{ eip.public_ip }}"
+     
+     - name: Add host to multiple groups
+       add_host:
+         hostname: '{{ eip.public_ip }}'
+         groups: es2
 
-    - add_host: hostname={{ item.public_ip }} groupname=ec2hosts
-      with_items: "{{ ec2.instances }}"
-    
-    - name: Add host to group 'just_created' with variable foo=42
-      add_host:
-        name: '{{ ip_from_ec2 }}'
-        groups: just_created
-        foo: 42
-    
-    - name: ec2_eip_info
-      register: regional_eip_addresses
+- name: install Apache and upload mt Web Page
+  hosts: web
+  become: yes
+
+  vars:
+    source_file: ./index.html
+    destin_file: /var/www/html
+
+  tasks:
+
+      - name: Install Apache Web server Debian
+        apt: name=apache2 state=latest
+
+      - name: Copy MyHomePage to Servers
+        copy: src={{ source_file }} dest={{ destin_file }} mode=0555
+        notify: Restart Apache
       
+      - name: Start Webserver and make it enable on boot RedHat
+        service: name=httpd state=started enabled=yes
+
+  handlers:
+  - name: Restart Apache 
+    service: name=apache2 state=started
