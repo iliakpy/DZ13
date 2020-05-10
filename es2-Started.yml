@@ -33,7 +33,7 @@
       debug:
       msg: "Allocated IP is {{ eip.public_ip }}"
      
-    - name: Add host to group1
+    - name: Add host to group
       add_host:
           hostname: '{{ eip.public_ip }}'
           groups: es2
